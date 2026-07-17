@@ -120,7 +120,7 @@ const translations = {
   },
 } as const;
 
-type Dict = typeof translations['en'];
+type Dict = (typeof translations)[Lang];
 
 const LangContext = createContext<{
   lang: Lang;
