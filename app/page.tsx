@@ -52,21 +52,21 @@ const vazir = Vazirmatn({ subsets: ['arabic'], variable: '--font-fa', display: '
    ============================================================ */
 
 // درباره خودت اینجا بنویس (بعداً پر کن)
-const about = '';
+const about = '#PouYa';
 
 const projects = [
-  { title: 'NoVA SeLF', description: '', url: '', image: '' },
-  { title: 'NoVA PaNeL', description: '', url: '', image: '' },
-  { title: 'EnlargeBoobs', description: '', url: '', image: '' },
+  { title: 'NoVA SeLF', description: 'NovaSelf یک سلف‌بات اختصاصی است که با اتصال به حساب تلگرام شما، مجموعه‌ای از قابلیت‌های خودکار و شخصی‌سازی را در اختیارتان می‌گذارد؛ همه چیز از طریق همین پنل قابل مدیریت است.', url: 'https://t.me/NovaSelfManagerBot', image: '' },
+  { title: 'NoVA PaNeL', description: 'نوا پنل', url: 'https://t.me/NovaConfigService', image: '' },
+  { title: 'EnlargeBoobs', description: 'خالی', url: 'http://t.me/Enlargeboobsbot', image: '' },
 ];
 
 const socials = {
-  telegram: '',
+  telegram: 'https://t.me/saypouya',
   github: '',
   instagram: '',
   discord: '',
   email: '',
-  website: '',
+  website: 'https://pouya-nu.vercel.app',
 };
 
 const LOCATION = 'Iran, Rasht'; // شناسه مکان — فقط همینجا نمایش داده می‌شود
@@ -102,7 +102,7 @@ type Lang = 'en' | 'fa';
 const translations = {
   en: {
     nav: { home: 'Home', about: 'About', projects: 'Work', connect: 'Connect', contact: 'Contact' },
-    hero: { tag: 'Available for select work' },
+    hero: { tag: 'Available!' },
     about: { eyebrow: 'About', reveal: 'Reveal', hide: 'Hide', empty: 'Content pending — placeholder only' },
     projects: { eyebrow: 'Selected work', heading: 'Projects', empty: 'Details pending', view: 'View project', soon: 'Link pending' },
     connect: { eyebrow: 'Elsewhere', heading: 'Find me online', empty: 'Not linked yet' },
@@ -111,7 +111,7 @@ const translations = {
   },
   fa: {
     nav: { home: 'خانه', about: 'درباره', projects: 'نمونه‌کار', connect: 'ارتباط', contact: 'تماس' },
-    hero: { tag: 'برای همکاری‌های خاص در دسترسم' },
+    hero: { tag: 'در دسترس!' },
     about: { eyebrow: 'درباره', reveal: 'نمایش', hide: 'پنهان', empty: 'محتوا به‌زودی — فقط جایگزین' },
     projects: { eyebrow: 'نمونه‌کارهای منتخب', heading: 'پروژه‌ها', empty: 'توضیحات به‌زودی', view: 'مشاهده پروژه', soon: 'لینک به‌زودی' },
     connect: { eyebrow: 'شبکه‌ها', heading: 'من را آنلاین پیدا کن', empty: 'هنوز متصل نشده' },
