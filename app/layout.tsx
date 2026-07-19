@@ -16,11 +16,8 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-};
-export const metadata: Metadata = {
-  ...
   verification: {
-    google: 'Hku3miZ0121oMIf_sSIJWKC2bauG4TnU00_C4FNkA5U', // فقط همون content رو بذار، نه کل تگ
+    google: 'Hku3miZ0121oMIf_sSIJWKC2bauG4TnU00_C4FNkA5U',
   },
 };
 
