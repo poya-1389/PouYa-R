@@ -105,8 +105,8 @@ const translations = {
     hero: { tag: 'Available!' },
     about: { eyebrow: 'About', reveal: 'Reveal', hide: 'Hide', empty: 'Content pending — placeholder only' },
     projects: { eyebrow: 'Selected work', heading: 'Projects', empty: 'Details pending', view: 'View project', soon: 'Link pending' },
-    connect: { eyebrow: 'Elsewhere', heading: 'Find me online', empty: 'Not linked yet' },
-    contact: { eyebrow: 'Say hello', heading: 'Get in touch', cta: 'Send a message', empty: 'Address pending' },
+    connect: { eyebrow: 'Elsewhere', heading: 'Contact methods ', empty: 'Not linked yet' },
+    contact: { eyebrow: 'Make a proposal', heading: 'Get in touch', cta: 'Send a message', empty: 'Address pending' },
     footer: { rights: 'All rights reserved.' },
   },
   fa: {
@@ -114,8 +114,8 @@ const translations = {
     hero: { tag: 'در دسترس!' },
     about: { eyebrow: 'درباره', reveal: 'نمایش', hide: 'پنهان', empty: 'محتوا به‌زودی — فقط جایگزین' },
     projects: { eyebrow: 'نمونه‌کارهای منتخب', heading: 'پروژه‌ها', empty: 'توضیحات به‌زودی', view: 'مشاهده پروژه', soon: 'لینک به‌زودی' },
-    connect: { eyebrow: 'شبکه‌ها', heading: 'من را آنلاین پیدا کن', empty: 'هنوز متصل نشده' },
-    contact: { eyebrow: 'سلام بگو', heading: 'راه ارتباطی', cta: 'ارسال پیام', empty: 'آدرس به‌زودی' },
+    connect: { eyebrow: 'شبکه‌ها', heading: 'راه های ارتباطی', empty: 'هنوز متصل نشده' },
+    contact: { eyebrow: 'پیشنهاد بده', heading: 'در تماس باش', cta: 'ارسال پیام', empty: 'آدرس به‌زودی' },
     footer: { rights: 'تمامی حقوق محفوظ است.' },
   },
 } as const;
