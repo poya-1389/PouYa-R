@@ -52,20 +52,20 @@ const vazir = Vazirmatn({ subsets: ['arabic'], variable: '--font-fa', display: '
    ============================================================ */
 
 // درباره خودت اینجا بنویس (بعداً پر کن)
-const about = '#PouYa';
+const about = 'There is nothing about me for now!';
 
 const projects = [
   { title: 'NoVA SeLF', description: 'NovaSelf یک سلف‌بات اختصاصی است که با اتصال به حساب تلگرام شما، مجموعه‌ای از قابلیت‌های خودکار و شخصی‌سازی را در اختیارتان می‌گذارد؛ همه چیز از طریق همین پنل قابل مدیریت است.', url: 'https://t.me/NovaSelfManagerBot', image: '' },
-  { title: 'NoVA PaNeL', description: 'نوا پنل', url: 'https://t.me/NovaConfigService', image: '' },
-  { title: 'EnlargeBoobs', description: 'خالی', url: 'http://t.me/Enlargeboobsbot', image: '' },
+  { title: 'NoVA PaNeL', description: 'NivaPaNel درحال حاضر در دسترس نیست اما به زودی در دسترس عموم قرار می گیرد', url: 'https://t.me/NovaConfigService', image: '' },
+  { title: 'EnlargeBoobs', description: 'EnlargeBoobs درحال حاضر در دسترس است من درحال آپدیت این ربات سرگرمی هستم ', url: 'http://t.me/Enlargeboobsbot', image: '' },
 ];
 
 const socials = {
   telegram: 'https://t.me/saypouya',
-  github: '',
-  instagram: '',
-  discord: '',
-  email: '',
+  github: 'https://Soon',
+  instagram: 'https://Soon',
+  discord: 'https://Soon',
+  email: 'email@gmail.com',
   website: 'https://pouya-nu.vercel.app',
 };
 
@@ -115,7 +115,7 @@ const translations = {
     about: { eyebrow: 'درباره', reveal: 'نمایش', hide: 'پنهان', empty: 'محتوا به‌زودی — فقط جایگزین' },
     projects: { eyebrow: 'نمونه‌کارهای منتخب', heading: 'پروژه‌ها', empty: 'توضیحات به‌زودی', view: 'مشاهده پروژه', soon: 'لینک به‌زودی' },
     connect: { eyebrow: 'شبکه‌ها', heading: 'من را آنلاین پیدا کن', empty: 'هنوز متصل نشده' },
-    contact: { eyebrow: 'سلام بگو', heading: 'در تماس باش', cta: 'ارسال پیام', empty: 'آدرس به‌زودی' },
+    contact: { eyebrow: 'سلام بگو', heading: 'راه ارتباطی', cta: 'ارسال پیام', empty: 'آدرس به‌زودی' },
     footer: { rights: 'تمامی حقوق محفوظ است.' },
   },
 } as const;
@@ -234,8 +234,8 @@ function GlassButton({
           className,
         ].join(' ')}
       >
-        <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/12 to-transparent opacity-60" />
-        <span className="pointer-events-none absolute -inset-px rounded-full bg-[radial-gradient(120px_60px_at_50%_0%,rgba(255,255,255,0.18),transparent)]" />
+        <span className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-b from-white/12 to-transparent opacity-60" />
+        <span className="pointer-events-none absolute -inset-px rounded-[inherit] bg-[radial-gradient(120px_60px_at_50%_0%,rgba(255,255,255,0.18),transparent)]" />
         {Icon && (
           // 🔁 Base44 icon slot
           <Icon size={16} strokeWidth={1.75} className="relative shrink-0 text-current" />
@@ -637,6 +637,82 @@ function ProjectsSection() {
    SOCIALS / CONNECT
    ============================================================ */
 
+// Compact circular icon button, purpose-built for the socials grid
+// (kept separate from GlassButton so it never needs size overrides)
+function SocialIconButton({
+  icon: Icon,
+  href,
+  label,
+  disabled = false,
+}: {
+  icon: LucideIcon;
+  href?: string;
+  label: string;
+  disabled?: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 200, damping: 16, mass: 0.15 });
+  const sy = useSpring(y, { stiffness: 200, damping: 16, mass: 0.15 });
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+
+  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (disabled) return;
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    x.set((e.clientX - rect.left - rect.width / 2) * 0.18);
+    y.set((e.clientY - rect.top - rect.height / 2) * 0.18);
+  }
+  function handleLeave() {
+    x.set(0);
+    y.set(0);
+  }
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (disabled) return;
+    const rect = ref.current?.getBoundingClientRect();
+    if (rect) {
+      const id = Date.now() + Math.random();
+      setRipples((r) => [...r, { id, x: e.clientX - rect.left, y: e.clientY - rect.top }]);
+      setTimeout(() => setRipples((r) => r.filter((rp) => rp.id !== id)), 650);
+    }
+  }
+
+  const Tag = (href && !disabled ? motion.a : motion.div) as any;
+
+  return (
+    <motion.div ref={ref} style={{ x: sx, y: sy }} onMouseMove={handleMove} onMouseLeave={handleLeave} className="inline-flex">
+      <Tag
+        href={href && !disabled ? href : undefined}
+        target={href && !disabled ? '_blank' : undefined}
+        rel={href && !disabled ? 'noopener noreferrer' : undefined}
+        onClick={handleClick}
+        whileTap={disabled ? undefined : { scale: 0.92 }}
+        aria-label={label}
+        aria-disabled={disabled}
+        className={[
+          'relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border backdrop-blur-xl transition-all duration-300 select-none',
+          disabled
+            ? 'cursor-not-allowed border-white/10 bg-white/[0.03] opacity-40 grayscale'
+            : 'cursor-pointer border-[#D4AF37]/25 bg-gradient-to-b from-[#D4AF37]/15 to-[#8a6d1f]/10 hover:border-[#D4AF37]/55 hover:shadow-[0_0_32px_-8px_rgba(212,175,55,0.5)]',
+        ].join(' ')}
+      >
+        {/* highlight always matches this button's own corner radius */}
+        <span className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-b from-white/10 to-transparent" />
+        {/* 🔁 Base44 icon slot */}
+        <Icon size={20} strokeWidth={1.6} className="relative z-10" />
+        {ripples.map((r) => (
+          <span
+            key={r.id}
+            className="pointer-events-none absolute rounded-full bg-[#D4AF37]/35"
+            style={{ left: r.x, top: r.y, width: 8, height: 8, marginLeft: -4, marginTop: -4, animation: 'nova-ripple 650ms ease-out forwards' }}
+          />
+        ))}
+      </Tag>
+    </motion.div>
+  );
+}
+
 function SocialsSection() {
   const { t } = useLang();
   const entries = Object.entries(socials) as [keyof typeof socials, string][];
@@ -663,15 +739,7 @@ function SocialsSection() {
                 transition={{ duration: 0.6, delay: i * 0.05 }}
                 className="flex flex-col items-center gap-3"
               >
-                <GlassButton
-                  icon={Icon}
-                  href={value || undefined}
-                  disabled={!value}
-                  tone="gold"
-                  className="!h-14 !w-14 !justify-center !rounded-2xl !p-0"
-                >
-                  <span className="sr-only">{key}</span>
-                </GlassButton>
+                <SocialIconButton icon={Icon} href={value || undefined} disabled={!value} label={key} />
                 <span className="text-[11px] capitalize text-zinc-500">
                   {value ? key : t.connect.empty}
                 </span>
@@ -781,4 +849,4 @@ export default function Page() {
       </motion.div>
     </LangContext.Provider>
   );
-}
+                  }
